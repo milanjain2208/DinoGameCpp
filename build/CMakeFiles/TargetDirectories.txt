@@ -1,3 +1,0 @@
-/home/workspace/CPP-CAPSTONE-DINOSAUR-CHROME-GAME/build/CMakeFiles/rebuild_cache.dir
-/home/workspace/CPP-CAPSTONE-DINOSAUR-CHROME-GAME/build/CMakeFiles/DinoGame.dir
-/home/workspace/CPP-CAPSTONE-DINOSAUR-CHROME-GAME/build/CMakeFiles/edit_cache.dir

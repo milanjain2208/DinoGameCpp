@@ -1,1 +1,0 @@
-/usr/bin/g++-7  -std=c++17   CMakeFiles/DinoGame.dir/src/main.cpp.o CMakeFiles/DinoGame.dir/src/renderer.cpp.o CMakeFiles/DinoGame.dir/src/game.cpp.o CMakeFiles/DinoGame.dir/src/controller.cpp.o  -o DinoGame -L/usr/lib/x86_64-linux-gnu  -lSDL2 
