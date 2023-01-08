@@ -1,7 +1,8 @@
 #include <iostream>
 #include "game.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height){};
+// Game::Game(std::size_t grid_width, std::size_t grid_height):
+//     dinosaur(grid_width, grid_height) {}
 void Game::Run(Controller &controller, Renderer &renderer,
                std::size_t target_frame_duration) {
   Uint32 title_timestamp = SDL_GetTicks();
@@ -17,7 +18,7 @@ void Game::Run(Controller &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running);
     Update();
-    renderer.Render();
+    renderer.Render(dinosaur);
 
     frame_end = SDL_GetTicks();
 

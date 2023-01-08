@@ -31,25 +31,6 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
-
-  // Render Dinosaur
-  SDL_Surface* surface = IMG_Load("dinosaur.png");
-  if (!surface)
-  {
-      std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
-  }
-
-  // Create a texture from the surface
-  m_texture = SDL_CreateTextureFromSurface(renderer, surface);
-  if (!m_texture)
-  {
-      std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
-  }
-  SDL_Rect dest;
-  dest.x = m_x;
-  dest.y = m_y;
-  dest.w = m_w;
-  dest.h = m_h;
 }
 
 Renderer::~Renderer() {
@@ -57,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render() {
+void Renderer::Render(Dinosaur dinosaur) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -69,13 +50,30 @@ void Renderer::Render() {
   // Render line
   SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0x00, 0xFF);
   SDL_Point point{0,static_cast<int>(0.6*grid_height)};
-  // block.y = point.y * block.h;
-  // for (int i=0;i<grid_width; i++) {
-  //   point.x = i;
-  //   block.x = point.x * block.w;
-  //   SDL_RenderFillRect(sdl_renderer, &block);
-  // }
+
   SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
+
+  // Render Dinosaur
+  SDL_Surface* surface = IMG_Load(dinosaur.image_path);
+  if (!surface)
+  {
+      std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
+  }
+
+  // Create a texture from the surface
+  m_texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
+  if (!m_texture)
+  {
+      std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
+  }
+  SDL_Rect dest;
+  dest.x = dinosaur.pos_x;
+  dest.y = dinosaur.pos_y;
+  dest.w = surface->w;
+  dest.h = surface->h;
+
+  SDL_RenderCopy(renderer, m_texture, NULL, &dest);
+
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }

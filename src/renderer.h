@@ -3,6 +3,8 @@
 
 #include <vector>
 #include "SDL.h"
+#include "SDL_image.h"
+#include "dinosaur.h"
 
 class Renderer {
  public:

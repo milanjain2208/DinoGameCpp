@@ -5,18 +5,20 @@
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
+#include "dinosaur.h"
 //#include "snake.h"
 
 class Game {
  public:
-  Game(std::size_t grid_width, std::size_t grid_height);
+  Game(std::size_t grid_width, std::size_t grid_height):
+    dinosaur(grid_width, grid_height) {}
   void Run(Controller &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   //int GetScore() const;
   //int GetSize() const;
 
  private:
-  //Snake snake;
+  Dinosaur dinosaur;
   //SDL_Point food;
 
   //std::random_device dev;
