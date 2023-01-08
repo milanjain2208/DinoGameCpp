@@ -31,6 +31,25 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
+
+  // Render Dinosaur
+  SDL_Surface* surface = IMG_Load("dinosaur.png");
+  if (!surface)
+  {
+      std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
+  }
+
+  // Create a texture from the surface
+  m_texture = SDL_CreateTextureFromSurface(renderer, surface);
+  if (!m_texture)
+  {
+      std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
+  }
+  SDL_Rect dest;
+  dest.x = m_x;
+  dest.y = m_y;
+  dest.w = m_w;
+  dest.h = m_h;
 }
 
 Renderer::~Renderer() {
