@@ -54,25 +54,27 @@ void Renderer::Render(Dinosaur dinosaur) {
   SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
 
   // Render Dinosaur
-  SDL_Surface* surface = IMG_Load(dinosaur.image_path);
+  SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
+  // SDL_RWops* rw = SDL_RWFromFile(dinosaur.image_path.c_str(), "rb");
+  // SDL_Surface* surface = IMG_Load_RW(rw, 1);
   if (!surface)
   {
       std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
   }
 
   // Create a texture from the surface
-  m_texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
+  SDL_Texture* m_texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
   if (!m_texture)
   {
       std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
   }
   SDL_Rect dest;
-  dest.x = dinosaur.pos_x;
-  dest.y = dinosaur.pos_y;
+  dest.x = dinosaur.pos_x * block.w;
+  dest.y = dinosaur.pos_y * block.h - surface->h;
   dest.w = surface->w;
   dest.h = surface->h;
 
-  SDL_RenderCopy(renderer, m_texture, NULL, &dest);
+  SDL_RenderCopy(sdl_renderer, m_texture, NULL, &dest);
 
   // Update Screen
   SDL_RenderPresent(sdl_renderer);

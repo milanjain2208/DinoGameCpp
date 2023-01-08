@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "SDL.h"
-#include "SDL_image.h"
 #include "dinosaur.h"
 
 class Renderer {
@@ -12,7 +11,7 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer() ;
 
-  void Render();
+  void Render(Dinosaur dinosaur);
   void UpdateWindowTitle();
 
  private:
