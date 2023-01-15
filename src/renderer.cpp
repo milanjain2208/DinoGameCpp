@@ -70,9 +70,9 @@ void Renderer::Render(Dinosaur dinosaur) {
   }
   SDL_Rect dest;
   dest.x = dinosaur.pos_x * block.w;
-  dest.y = dinosaur.pos_y * block.h - surface->h;
-  dest.w = surface->w;
-  dest.h = surface->h;
+  dest.y = dinosaur.pos_y * block.h - (surface->h/2);
+  dest.w = surface->w/2;
+  dest.h = surface->h/2;
 
   SDL_RenderCopy(sdl_renderer, m_texture, NULL, &dest);
 

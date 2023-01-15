@@ -16,7 +16,7 @@ void Game::Run(Controller &controller, Renderer &renderer,
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running);
+    controller.HandleInput(running,dinosaur);
     Update();
     renderer.Render(dinosaur);
 
@@ -61,7 +61,7 @@ void Game::Run(Controller &controller, Renderer &renderer,
 void Game::Update() {
 //   if (!snake.alive) return;
 
-//   snake.Update();
+  dinosaur.update();
 
 //   int new_x = static_cast<int>(snake.head_x);
 //   int new_y = static_cast<int>(snake.head_y);
