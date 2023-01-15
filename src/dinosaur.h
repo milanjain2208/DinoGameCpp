@@ -1,7 +1,7 @@
 #ifndef DINO_H
 #define DINO_H
 #include <iostream>
-#include "game.h"
+#include "SDL.h"
 
 
 class Dinosaur {
@@ -11,7 +11,7 @@ class Dinosaur {
    pos_x(static_cast<int>(grid_width/40)),
    pos_y(static_cast<int>(0.6*grid_height)),
    init_posy(static_cast<int>(0.6*grid_height)),
-   jump_accn(static_cast<int>(0.1*grid_height)) {}
+   jump_accn(0.02*grid_height) {}
    void update();
 
    int pos_x;
@@ -28,8 +28,8 @@ class Dinosaur {
   int jump_velocity=0;
   int jump_accn;
   int init_posy;
-  int init_jumptime;
-  int in_air;
+  // int init_jumptime;
+  int in_air=false;
 };
 
 #endif
