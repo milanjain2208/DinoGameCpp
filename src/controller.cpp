@@ -8,9 +8,9 @@ void Controller::HandleInput(bool &running,Dinosaur &dino) const {
     if (e.type == SDL_QUIT) {
       running = false;
     }
-    else if (event.type == SDL_KEYDOWN) {
+    else if (e.type == SDL_KEYDOWN) {
           // Jump the dinosaur when the space bar is pressed
-          if (event.key.keysym.sym == SDLK_SPACE)
+          if (e.key.keysym.sym == SDLK_SPACE)
           {
               dino.init_jump = true;
           }

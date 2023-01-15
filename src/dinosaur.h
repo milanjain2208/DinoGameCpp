@@ -16,7 +16,7 @@ class Dinosaur {
    int pos_y;
    int width;
    int height;
-   int initiate_jump = false;
+   int init_jump = false;
    std::string image_path = "../media/dino-right.bmp";
   private:
   void jump();
