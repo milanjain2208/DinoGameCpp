@@ -12,7 +12,7 @@ void Dinosaur::update() {
     if(in_air) {
         int curr_jumptime = SDL_GetTicks();
         int time_duration = curr_jumptime - init_jumptime;
-        pos_y = static_cast<int>(jump_velocity * time_duration + 0.5 * jump_accn * time_duration * time_duration)
+        pos_y = static_cast<int>(jump_velocity * time_duration + 0.5 * jump_accn * time_duration * time_duration);
         if (pos_y  == init_posy) {
             in_air = false;
         }

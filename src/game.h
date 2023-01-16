@@ -6,6 +6,7 @@
 #include "controller.h"
 #include "renderer.h"
 #include "dinosaur.h"
+#include "platform.h"
 //#include "snake.h"
 
 class Game {
@@ -19,6 +20,7 @@ class Game {
 
  private:
   Dinosaur dinosaur;
+  Platform platform;
   //SDL_Point food;
 
   //std::random_device dev;

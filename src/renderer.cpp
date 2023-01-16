@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Dinosaur dinosaur) {
+void Renderer::Render(Dinosaur dinosaur, Platform platform) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -48,15 +48,33 @@ void Renderer::Render(Dinosaur dinosaur) {
   SDL_RenderClear(sdl_renderer);
 
   // Render line
-  SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0x00, 0xFF);
-  SDL_Point point{0,static_cast<int>(0.6*grid_height)};
+  // SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0x00, 0xFF);
+  // SDL_Point point{0,static_cast<int>(0.6*grid_height)};
+  
 
-  SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
+  // SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
+  SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
+  if (!platform_surface)
+  {
+      std::cout << "Failed to load platform image: " << SDL_GetError() << std::endl;
+  }
+
+  // Create a texture from the surface
+  SDL_Texture* platform_texture = SDL_CreateTextureFromSurface(sdl_renderer, platform_surface);
+  if (!platform_texture)
+  {
+      std::cout << "Failed to create platform texture: " << SDL_GetError() << std::endl;
+  }
+  SDL_Rect platform_rect;
+  platform_rect.x = platform.pos_x * block.w;
+  platform_rect.y = platform.pos_y * block.h;
+  platform_rect.w = platform.width;
+  platform_rect.h = platform.height;
+  SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
+
 
   // Render Dinosaur
   SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
-  // SDL_RWops* rw = SDL_RWFromFile(dinosaur.image_path.c_str(), "rb");
-  // SDL_Surface* surface = IMG_Load_RW(rw, 1);
   if (!surface)
   {
       std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
