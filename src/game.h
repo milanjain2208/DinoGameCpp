@@ -12,7 +12,8 @@
 class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height):
-    dinosaur(grid_width, grid_height) {}
+    dinosaur(grid_width, grid_height),
+    platform(grid_width, grid_height) {}
   void Run(Controller &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   //int GetScore() const;

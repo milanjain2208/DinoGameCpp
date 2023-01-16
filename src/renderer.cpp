@@ -69,7 +69,7 @@ void Renderer::Render(Dinosaur dinosaur, Platform platform) {
   platform_rect.x = platform.pos_x * block.w;
   platform_rect.y = platform.pos_y * block.h;
   platform_rect.w = platform.width;
-  platform_rect.h = platform.height;
+  platform_rect.h = platform_surface->h;
   SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
 
 
