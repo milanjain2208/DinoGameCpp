@@ -18,7 +18,7 @@ void Game::Run(Controller &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running,dinosaur);
     Update();
-    renderer.Render(dinosaur,platform);
+    renderer.Render(dinosaur,platform1, platform2);
 
     frame_end = SDL_GetTicks();
 

@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Dinosaur dinosaur, Platform platform) {
+void Renderer::Render(Dinosaur dinosaur, Platform platform1, Platform platform2) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -53,24 +53,8 @@ void Renderer::Render(Dinosaur dinosaur, Platform platform) {
   
 
   // SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
-  SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
-  if (!platform_surface)
-  {
-      std::cout << "Failed to load platform image: " << SDL_GetError() << std::endl;
-  }
-
-  // Create a texture from the surface
-  SDL_Texture* platform_texture = SDL_CreateTextureFromSurface(sdl_renderer, platform_surface);
-  if (!platform_texture)
-  {
-      std::cout << "Failed to create platform texture: " << SDL_GetError() << std::endl;
-  }
-  SDL_Rect platform_rect;
-  platform_rect.x = platform.pos_x * block.w;
-  platform_rect.y = platform.pos_y * block.h;
-  platform_rect.w = platform.width;
-  platform_rect.h = platform_surface->h;
-  SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
+  RenderPlatform(platform1);
+  RenderPlatform(platform2);
 
 
   // Render Dinosaur
@@ -101,4 +85,25 @@ void Renderer::Render(Dinosaur dinosaur, Platform platform) {
 void Renderer::UpdateWindowTitle() {
   std::string title{"Game is on"};
   SDL_SetWindowTitle(sdl_window, title.c_str());
+}
+
+void Renderer::RenderPlatform(Platform platform) {
+    SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
+    if (!platform_surface)
+    {
+        std::cout << "Failed to load platform image: " << SDL_GetError() << std::endl;
+    }
+
+    // Create a texture from the surface
+    SDL_Texture* platform_texture = SDL_CreateTextureFromSurface(sdl_renderer, platform_surface);
+    if (!platform_texture)
+    {
+        std::cout << "Failed to create platform texture: " << SDL_GetError() << std::endl;
+    }
+    SDL_Rect platform_rect;
+    platform_rect.x = platform.pos_x * block.w;
+    platform_rect.y = platform.pos_y * block.h;
+    platform_rect.w = platform.width;
+    platform_rect.h = platform_surface->h;
+    SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
 }

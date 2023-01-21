@@ -13,7 +13,8 @@ class Game {
  public:
   Game(std::size_t grid_width, std::size_t grid_height):
     dinosaur(grid_width, grid_height),
-    platform(grid_width, grid_height) {}
+    platform1(grid_width, grid_height, 0, "../media/platform-1.bmp"),
+    platform2(grid_width, grid_height, grid_width, "../media/platform-2.bmp") {}
   void Run(Controller &controller, Renderer &renderer,
            std::size_t target_frame_duration);
   //int GetScore() const;
@@ -21,7 +22,8 @@ class Game {
 
  private:
   Dinosaur dinosaur;
-  Platform platform;
+  Platform platform1;
+  Platform platform2;
   //SDL_Point food;
 
   //std::random_device dev;

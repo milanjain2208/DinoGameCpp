@@ -6,16 +6,16 @@
 
 class Platform {
  public:
-   Platform(int grid_width, int grid_height): 
+   Platform(int grid_width, int grid_height, int posx, std::string image_path): 
    width(grid_width),
-   pos_y(static_cast<int>(0.6*grid_height)) {}
-//    void update();
-
-   int pos_x = 0;
+   pos_y(static_cast<int>(0.6*grid_height)),
+   pos_x(posx) {}
+   void update();
    int pos_y;
+   int pos_x;
    int width;
    //int height;
-   std::string image_path = "../media/platform.bmp";
+   std::string image_path;
 };
 
 #endif
