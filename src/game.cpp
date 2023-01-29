@@ -62,6 +62,8 @@ void Game::Update() {
 //   if (!snake.alive) return;
 
   dinosaur.update();
+  platform1.update();
+  platform2.update();
 
 //   int new_x = static_cast<int>(snake.head_x);
 //   int new_y = static_cast<int>(snake.head_y);

@@ -53,8 +53,11 @@ void Renderer::Render(Dinosaur dinosaur, Platform platform1, Platform platform2)
   
 
   // SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
-  RenderPlatform(platform1);
-  RenderPlatform(platform2);
+  
+  // std::cout << platform1.image_path << std::endl;
+  // std::cout << platform2.image_path << std::endl;
+  RenderPlatform(platform1,block);
+  RenderPlatform(platform2,block);
 
 
   // Render Dinosaur
@@ -87,7 +90,8 @@ void Renderer::UpdateWindowTitle() {
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }
 
-void Renderer::RenderPlatform(Platform platform) {
+void Renderer::RenderPlatform(Platform platform, SDL_Rect block) {
+    // std::cout << platform.image_path << std::endl;
     SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
     if (!platform_surface)
     {
