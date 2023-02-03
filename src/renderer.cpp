@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Dinosaur dinosaur, Platform platform1, Platform platform2) {
+void Renderer::Render(Dinosaur dinosaur, Platform &platform1, Platform &platform2) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
@@ -90,8 +90,8 @@ void Renderer::UpdateWindowTitle() {
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }
 
-void Renderer::RenderPlatform(Platform platform, SDL_Rect block) {
-    // std::cout << platform.image_path << std::endl;
+void Renderer::RenderPlatform(Platform &platform, SDL_Rect block) {
+    // std::cout << platform.grid_height << std::endl;
     SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
     if (!platform_surface)
     {
@@ -110,4 +110,25 @@ void Renderer::RenderPlatform(Platform platform, SDL_Rect block) {
     platform_rect.w = platform.width;
     platform_rect.h = platform_surface->h;
     SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
+
+    // Render tree
+    SDL_Surface* tree_surface = SDL_LoadBMP(platform.tree.image_path.c_str());
+    if (!tree_surface)
+    {
+        std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
+    }
+
+    // Create a texture from the surface
+    SDL_Texture* tree_texture = SDL_CreateTextureFromSurface(sdl_renderer, tree_surface);
+    if (!tree_texture)
+    {
+        std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
+    }
+    SDL_Rect tree_rect;
+    tree_rect.x = platform.tree.pos_x * block.w;
+    tree_rect.y = platform.tree.pos_y * block.h - (tree_surface->h);
+    tree_rect.w = tree_surface->w;
+    tree_rect.h = tree_surface->h;
+
+    SDL_RenderCopy(sdl_renderer, tree_texture, NULL, &tree_rect);
 }

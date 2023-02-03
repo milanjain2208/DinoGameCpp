@@ -11,7 +11,7 @@ class Dinosaur {
    pos_x(static_cast<int>(grid_width/40)),
    pos_y(static_cast<int>(0.6*grid_height)),
    init_posy(static_cast<int>(0.6*grid_height)),
-   jump_accn(0.03*grid_height) {}
+   jump_accn(0.025*grid_height) {}
    void update();
 
    int pos_x;
