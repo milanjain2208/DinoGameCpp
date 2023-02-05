@@ -47,81 +47,13 @@ void Renderer::Render(Dinosaur &dinosaur, Platform &platform1, Platform &platfor
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-  // RenderPlatform(platform1,block);
-  // RenderPlatform(platform2,block);
   platform1.render(sdl_renderer,block);
   platform2.render(sdl_renderer,block);
 
   dinosaur.render(sdl_renderer,block);
-  // // Render Dinosaur
-  // SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
-  // if (!surface)
-  // {
-  //     std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
-  // }
-
-  // // Create a texture from the surface
-  // SDL_Texture* m_texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
-  // if (!m_texture)
-  // {
-  //     std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
-  // }
-  // SDL_Rect dest;
-  // dest.x = dinosaur.pos_x * block.w;
-  // dest.y = dinosaur.pos_y * block.h - (surface->h/2);
-  // dest.w = surface->w/2;
-  // dest.h = surface->h/2;
-
-  // SDL_RenderCopy(sdl_renderer, m_texture, NULL, &dest);
-
-  // // Update Screen
-  // SDL_RenderPresent(sdl_renderer);
 }
 
 void Renderer::UpdateWindowTitle() {
-  std::string title{"Game is on"};
+  std::string title{"Dino Score: " + std::to_string(score)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }
-
-// void Renderer::RenderPlatform(Platform &platform, SDL_Rect block) {
-//     // std::cout << platform.grid_height << std::endl;
-//     SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
-//     if (!platform_surface)
-//     {
-//         std::cout << "Failed to load platform image: " << SDL_GetError() << std::endl;
-//     }
-
-//     // Create a texture from the surface
-//     SDL_Texture* platform_texture = SDL_CreateTextureFromSurface(sdl_renderer, platform_surface);
-//     if (!platform_texture)
-//     {
-//         std::cout << "Failed to create platform texture: " << SDL_GetError() << std::endl;
-//     }
-//     SDL_Rect platform_rect;
-//     platform_rect.x = platform.pos_x * block.w;
-//     platform_rect.y = platform.pos_y * block.h;
-//     platform_rect.w = platform.width;
-//     platform_rect.h = platform_surface->h;
-//     SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
-
-//     // Render tree
-//     SDL_Surface* tree_surface = SDL_LoadBMP(platform.tree.image_path.c_str());
-//     if (!tree_surface)
-//     {
-//         std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
-//     }
-
-//     // Create a texture from the surface
-//     SDL_Texture* tree_texture = SDL_CreateTextureFromSurface(sdl_renderer, tree_surface);
-//     if (!tree_texture)
-//     {
-//         std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
-//     }
-//     SDL_Rect tree_rect;
-//     tree_rect.x = platform.tree.pos_x * block.w;
-//     tree_rect.y = platform.tree.pos_y * block.h - (tree_surface->h);
-//     tree_rect.w = tree_surface->w;
-//     tree_rect.h = tree_surface->h;
-
-//     SDL_RenderCopy(sdl_renderer, tree_texture, NULL, &tree_rect);
-// }
