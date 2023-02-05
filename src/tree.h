@@ -2,6 +2,7 @@
 #define TREE_H
 #include <iostream>
 #include <random>
+#include "SDL.h"
 
 class Tree {
     public:
@@ -11,8 +12,10 @@ class Tree {
     random_x(grid_width, static_cast<int>(2*grid_width)) {}
     int pos_x = -10;
     int pos_y;
+    SDL_Rect dest;
     std::string image_path = "../media/tree.bmp";   
     void update();
+    void render(SDL_Renderer *, SDL_Rect &);
     private:
     std::random_device dev;
     std::mt19937 engine;
