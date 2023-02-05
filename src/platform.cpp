@@ -28,25 +28,4 @@ void Platform::render(SDL_Renderer *sdl_renderer, SDL_Rect &block) {
     SDL_RenderCopy(sdl_renderer, texture, NULL, &dest);
 
     tree.render(sdl_renderer,block);
-
-    // // Render tree
-    // SDL_Surface* tree_surface = SDL_LoadBMP(tree.image_path.c_str());
-    // if (!tree_surface)
-    // {
-    //     std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
-    // }
-
-    // // Create a texture from the surface
-    // SDL_Texture* tree_texture = SDL_CreateTextureFromSurface(sdl_renderer, tree_surface);
-    // if (!tree_texture)
-    // {
-    //     std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
-    // }
-    // SDL_Rect tree_rect;
-    // tree_rect.x = tree.pos_x * block.w;
-    // tree_rect.y = tree.pos_y * block.h - (tree_surface->h);
-    // tree_rect.w = tree_surface->w;
-    // tree_rect.h = tree_surface->h;
-
-    // SDL_RenderCopy(sdl_renderer, tree_texture, NULL, &tree_rect);
 }

@@ -20,6 +20,7 @@ class Dinosaur {
    int width;
    int height;
    int init_jump = false;
+   SDL_Rect dest;
    std::string image_path = "../media/dino-right.bmp";
   private:
   void jump();
@@ -31,7 +32,6 @@ class Dinosaur {
   int init_posy;
   // int init_jumptime;
   int in_air=false;
-  SDL_Rect dest;
 };
 
 #endif

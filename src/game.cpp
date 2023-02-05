@@ -19,6 +19,9 @@ void Game::Run(Controller &controller, Renderer &renderer,
     controller.HandleInput(running,dinosaur);
     Update();
     renderer.Render(dinosaur,platform1, platform2);
+    if (Collision(dinosaur.dest,platform1.tree.dest) || Collision(dinosaur.dest,platform2.tree.dest)) {
+      running = false;
+    }
 
     frame_end = SDL_GetTicks();
 
@@ -80,3 +83,7 @@ void Game::Update() {
 
 // int Game::GetScore() const { return score; }
 // int Game::GetSize() const { return snake.size; }
+
+  void Game::Collision(SDL_Rect a, SDL_Rect b) {
+    return SDL_HasIntersection(&a, &b);
+  }
