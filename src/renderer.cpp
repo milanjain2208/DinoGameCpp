@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Dinosaur dinosaur, Platform &platform1, Platform &platform2) {
+void Renderer::Render(Dinosaur &dinosaur, Platform &platform1, Platform &platform2) {
   SDL_Rect block;
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;

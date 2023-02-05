@@ -12,7 +12,7 @@ class Renderer {
            const std::size_t grid_width, const std::size_t grid_height);
   ~Renderer() ;
 
-  void Render(Dinosaur dinosaur,Platform &platform1, Platform &platform2);
+  void Render(Dinosaur &dinosaur,Platform &platform1, Platform &platform2);
   void UpdateWindowTitle();
   // void RenderPlatform(Platform &platform, SDL_Rect block);
 

@@ -35,7 +35,7 @@ class Game {
 
   //void PlaceFood();
   void Update();
-  void Collision(SDL_Rect a, SDL_Rect b);
+  bool Collision(SDL_Rect a, SDL_Rect b);
 };
 
 #endif

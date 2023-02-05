@@ -44,6 +44,7 @@ void Dinosaur::render(SDL_Renderer *sdl_renderer, SDL_Rect &block) {
   dest.y = pos_y * block.h - (surface->h/2);
   dest.w = surface->w/2;
   dest.h = surface->h/2;
+//   std::cout<<dest.x<<" "<<dest.y<<" "<<dest.w<<" "<<dest.h<<" "<<std::endl;
 
   SDL_RenderCopy(sdl_renderer, m_texture, NULL, &dest);
 

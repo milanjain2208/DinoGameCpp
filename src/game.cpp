@@ -19,7 +19,10 @@ void Game::Run(Controller &controller, Renderer &renderer,
     controller.HandleInput(running,dinosaur);
     Update();
     renderer.Render(dinosaur,platform1, platform2);
+    // std::cout<<dinosaur.dest.x<<" "<<dinosaur.dest.y<<" "<<dinosaur.dest.w<<" "<<dinosaur.dest.h<<" "<<std::endl;
+    // std::cout<<platform1.tree.dest.x<<" "<<platform1.tree.dest.y<<" "<<platform1.tree.dest.w<<" "<<platform1.tree.dest.h<<" "<<std::endl;
     if (Collision(dinosaur.dest,platform1.tree.dest) || Collision(dinosaur.dest,platform2.tree.dest)) {
+      std::cout << "Terminating" << std::endl;
       running = false;
     }
 
@@ -84,6 +87,7 @@ void Game::Update() {
 // int Game::GetScore() const { return score; }
 // int Game::GetSize() const { return snake.size; }
 
-  void Game::Collision(SDL_Rect a, SDL_Rect b) {
+  bool Game::Collision(SDL_Rect a, SDL_Rect b) {
+    // std::cout<<a.x<<"  " <<b.x<<std::endl;
     return SDL_HasIntersection(&a, &b);
   }
