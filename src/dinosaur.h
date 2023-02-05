@@ -13,6 +13,7 @@ class Dinosaur {
    init_posy(static_cast<int>(0.6*grid_height)),
    jump_accn(0.025*grid_height) {}
    void update();
+   void render(SDL_Renderer *, SDL_Rect &);
 
    int pos_x;
    int pos_y;
@@ -30,6 +31,7 @@ class Dinosaur {
   int init_posy;
   // int init_jumptime;
   int in_air=false;
+  SDL_Rect dest;
 };
 
 #endif

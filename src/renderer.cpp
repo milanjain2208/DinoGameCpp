@@ -59,30 +59,30 @@ void Renderer::Render(Dinosaur dinosaur, Platform &platform1, Platform &platform
   RenderPlatform(platform1,block);
   RenderPlatform(platform2,block);
 
+  dinosaur.dispaly(sdl_renderer,block);
+  // // Render Dinosaur
+  // SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
+  // if (!surface)
+  // {
+  //     std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
+  // }
 
-  // Render Dinosaur
-  SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
-  if (!surface)
-  {
-      std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
-  }
+  // // Create a texture from the surface
+  // SDL_Texture* m_texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
+  // if (!m_texture)
+  // {
+  //     std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
+  // }
+  // SDL_Rect dest;
+  // dest.x = dinosaur.pos_x * block.w;
+  // dest.y = dinosaur.pos_y * block.h - (surface->h/2);
+  // dest.w = surface->w/2;
+  // dest.h = surface->h/2;
 
-  // Create a texture from the surface
-  SDL_Texture* m_texture = SDL_CreateTextureFromSurface(sdl_renderer, surface);
-  if (!m_texture)
-  {
-      std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
-  }
-  SDL_Rect dest;
-  dest.x = dinosaur.pos_x * block.w;
-  dest.y = dinosaur.pos_y * block.h - (surface->h/2);
-  dest.w = surface->w/2;
-  dest.h = surface->h/2;
+  // SDL_RenderCopy(sdl_renderer, m_texture, NULL, &dest);
 
-  SDL_RenderCopy(sdl_renderer, m_texture, NULL, &dest);
-
-  // Update Screen
-  SDL_RenderPresent(sdl_renderer);
+  // // Update Screen
+  // SDL_RenderPresent(sdl_renderer);
 }
 
 void Renderer::UpdateWindowTitle() {
