@@ -14,7 +14,7 @@ class Renderer {
 
   void Render(Dinosaur dinosaur,Platform &platform1, Platform &platform2);
   void UpdateWindowTitle();
-  void RenderPlatform(Platform &platform, SDL_Rect block);
+  // void RenderPlatform(Platform &platform, SDL_Rect block);
 
  private:
   SDL_Window *sdl_window;

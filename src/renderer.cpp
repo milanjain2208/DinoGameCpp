@@ -47,8 +47,8 @@ void Renderer::Render(Dinosaur dinosaur, Platform &platform1, Platform &platform
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-  RenderPlatform(platform1,block);
-  RenderPlatform(platform2,block);
+  // RenderPlatform(platform1,block);
+  // RenderPlatform(platform2,block);
   platform1.render(sdl_renderer,block);
   platform2.render(sdl_renderer,block);
 
