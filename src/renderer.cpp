@@ -59,7 +59,7 @@ void Renderer::Render(Dinosaur dinosaur, Platform &platform1, Platform &platform
   RenderPlatform(platform1,block);
   RenderPlatform(platform2,block);
 
-  dinosaur.dispaly(sdl_renderer,block);
+  dinosaur.render(sdl_renderer,block);
   // // Render Dinosaur
   // SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
   // if (!surface)

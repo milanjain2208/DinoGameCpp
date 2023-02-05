@@ -28,7 +28,7 @@ void Dinosaur::update() {
 
 void Dinosaur::render(SDL_Renderer *sdl_renderer, SDL_Rect &block) {
     // Render Dinosaur
-  SDL_Surface* surface = SDL_LoadBMP(dinosaur.image_path.c_str());
+  SDL_Surface* surface = SDL_LoadBMP(image_path.c_str());
   if (!surface)
   {
       std::cout << "Failed to load Dinosaur image: " << SDL_GetError() << std::endl;
@@ -40,8 +40,8 @@ void Dinosaur::render(SDL_Renderer *sdl_renderer, SDL_Rect &block) {
   {
       std::cout << "Failed to create Dinosaur texture: " << SDL_GetError() << std::endl;
   }
-  dest.x = dinosaur.pos_x * block.w;
-  dest.y = dinosaur.pos_y * block.h - (surface->h/2);
+  dest.x = pos_x * block.w;
+  dest.y = pos_y * block.h - (surface->h/2);
   dest.w = surface->w/2;
   dest.h = surface->h/2;
 
