@@ -47,17 +47,10 @@ void Renderer::Render(Dinosaur dinosaur, Platform &platform1, Platform &platform
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
   SDL_RenderClear(sdl_renderer);
 
-  // Render line
-  // SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x00, 0x00, 0xFF);
-  // SDL_Point point{0,static_cast<int>(0.6*grid_height)};
-  
-
-  // SDL_RenderDrawLine(sdl_renderer,0,point.y*block.h,static_cast<int>(grid_width)*block.w,point.y*block.h);
-  
-  // std::cout << platform1.image_path << std::endl;
-  // std::cout << platform2.image_path << std::endl;
   RenderPlatform(platform1,block);
   RenderPlatform(platform2,block);
+  platform1.render(sdl_renderer,block);
+  platform2.render(sdl_renderer,block);
 
   dinosaur.render(sdl_renderer,block);
   // // Render Dinosaur
@@ -90,45 +83,45 @@ void Renderer::UpdateWindowTitle() {
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }
 
-void Renderer::RenderPlatform(Platform &platform, SDL_Rect block) {
-    // std::cout << platform.grid_height << std::endl;
-    SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
-    if (!platform_surface)
-    {
-        std::cout << "Failed to load platform image: " << SDL_GetError() << std::endl;
-    }
+// void Renderer::RenderPlatform(Platform &platform, SDL_Rect block) {
+//     // std::cout << platform.grid_height << std::endl;
+//     SDL_Surface* platform_surface = SDL_LoadBMP(platform.image_path.c_str());
+//     if (!platform_surface)
+//     {
+//         std::cout << "Failed to load platform image: " << SDL_GetError() << std::endl;
+//     }
 
-    // Create a texture from the surface
-    SDL_Texture* platform_texture = SDL_CreateTextureFromSurface(sdl_renderer, platform_surface);
-    if (!platform_texture)
-    {
-        std::cout << "Failed to create platform texture: " << SDL_GetError() << std::endl;
-    }
-    SDL_Rect platform_rect;
-    platform_rect.x = platform.pos_x * block.w;
-    platform_rect.y = platform.pos_y * block.h;
-    platform_rect.w = platform.width;
-    platform_rect.h = platform_surface->h;
-    SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
+//     // Create a texture from the surface
+//     SDL_Texture* platform_texture = SDL_CreateTextureFromSurface(sdl_renderer, platform_surface);
+//     if (!platform_texture)
+//     {
+//         std::cout << "Failed to create platform texture: " << SDL_GetError() << std::endl;
+//     }
+//     SDL_Rect platform_rect;
+//     platform_rect.x = platform.pos_x * block.w;
+//     platform_rect.y = platform.pos_y * block.h;
+//     platform_rect.w = platform.width;
+//     platform_rect.h = platform_surface->h;
+//     SDL_RenderCopy(sdl_renderer, platform_texture, NULL, &platform_rect);
 
-    // Render tree
-    SDL_Surface* tree_surface = SDL_LoadBMP(platform.tree.image_path.c_str());
-    if (!tree_surface)
-    {
-        std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
-    }
+//     // Render tree
+//     SDL_Surface* tree_surface = SDL_LoadBMP(platform.tree.image_path.c_str());
+//     if (!tree_surface)
+//     {
+//         std::cout << "Failed to load image: " << SDL_GetError() << std::endl;
+//     }
 
-    // Create a texture from the surface
-    SDL_Texture* tree_texture = SDL_CreateTextureFromSurface(sdl_renderer, tree_surface);
-    if (!tree_texture)
-    {
-        std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
-    }
-    SDL_Rect tree_rect;
-    tree_rect.x = platform.tree.pos_x * block.w;
-    tree_rect.y = platform.tree.pos_y * block.h - (tree_surface->h);
-    tree_rect.w = tree_surface->w;
-    tree_rect.h = tree_surface->h;
+//     // Create a texture from the surface
+//     SDL_Texture* tree_texture = SDL_CreateTextureFromSurface(sdl_renderer, tree_surface);
+//     if (!tree_texture)
+//     {
+//         std::cout << "Failed to create texture: " << SDL_GetError() << std::endl;
+//     }
+//     SDL_Rect tree_rect;
+//     tree_rect.x = platform.tree.pos_x * block.w;
+//     tree_rect.y = platform.tree.pos_y * block.h - (tree_surface->h);
+//     tree_rect.w = tree_surface->w;
+//     tree_rect.h = tree_surface->h;
 
-    SDL_RenderCopy(sdl_renderer, tree_texture, NULL, &tree_rect);
-}
+//     SDL_RenderCopy(sdl_renderer, tree_texture, NULL, &tree_rect);
+// }

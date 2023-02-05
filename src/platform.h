@@ -2,6 +2,7 @@
 #define PLATFORM_H
 #include <iostream>
 #include <tree.h>
+#include "SDL.h"
 // #include "SDL.h"
 
 
@@ -18,11 +19,13 @@ class Platform {
       // std::cout<<image_path<<std::endl;
    }
    void update();
+   void render(SDL_Renderer *, SDL_Rect &);
    int pos_y;
    int pos_x;
    int width;
    int grid_width;
    int grid_height;
+   SDL_Rect dest;
    //int height;
    std::string image_path;
    Tree tree;
