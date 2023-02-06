@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "SDL.h"
+#include "SDL_ttf.h"
 #include "dinosaur.h"
 #include "platform.h"
 
@@ -13,7 +14,8 @@ class Renderer {
   ~Renderer() ;
 
   void Render(Dinosaur &dinosaur,Platform &platform1, Platform &platform2);
-  void UpdateWindowTitle();
+  void UpdateWindowTitle(int);
+  void UpdateScore(int);
   // void RenderPlatform(Platform &platform, SDL_Rect block);
 
  private:

@@ -11,9 +11,11 @@ project(DinoGame)
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/")
 
+INCLUDE(FindPkgConfig)
 find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIRS} src)
+PKG_SEARCH_MODULE(SDL2TTF REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2TTF_INCLUDE_DIRS} src)
 
 add_executable(DinoGame src/main.cpp src/renderer.cpp src/game.cpp src/controller.cpp src/dinosaur.cpp src/platform.cpp src/tree.cpp)
 string(STRIP ${SDL2_LIBRARIES} SDL2_LIBRARIES)
-target_link_libraries(DinoGame ${SDL2_LIBRARIES})
+target_link_libraries(DinoGame ${SDL2_LIBRARIES} ${SDL2TTF_LIBRARIES})
