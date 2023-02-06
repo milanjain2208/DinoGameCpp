@@ -31,6 +31,13 @@ Renderer::Renderer(const std::size_t screen_width,
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
+  if (TTF_Init() < 0) {
+    std::cerr << "SDL_ttf could not initialize! SDL_ttf Error: " << TTF_GetError() << std::endl;
+  }
+  font = TTF_OpenFont("../media/Ubuntu-C.ttf", 24);
+  if (font == nullptr) {
+    std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+  }
 }
 
 Renderer::~Renderer() {
@@ -38,8 +45,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Dinosaur &dinosaur, Platform &platform1, Platform &platform2) {
-  SDL_Rect block;
+void Renderer::Render(Dinosaur &dinosaur, Platform &platform1, Platform &platform2, int score) {
   block.w = screen_width / grid_width;
   block.h = screen_height / grid_height;
 
@@ -51,23 +57,18 @@ void Renderer::Render(Dinosaur &dinosaur, Platform &platform1, Platform &platfor
   platform2.render(sdl_renderer,block);
 
   dinosaur.render(sdl_renderer,block);
+  UpdateScore(score);
 }
 
 void Renderer::UpdateWindowTitle(int score) {
   std::string title{"Dino Score: " + std::to_string(score)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
-  UpdateScore(score);
 }
 
 void Renderer::UpdateScore(int score) {
-  TTF_Font* font = TTF_OpenFont("font.ttf", 24);
-  if (font == nullptr) {
-    std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
-  }
-
   // Render text to surface
   SDL_Color textColor = {0, 0, 0, 255};
-  std::string text = "12345";
+  std::string text = std::to_string(score);
   SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), textColor);
   if (textSurface == nullptr) {
     std::cerr << "Unable to render text surface! SDL_ttf Error: " << TTF_GetError() << std::endl;
@@ -78,7 +79,7 @@ void Renderer::UpdateScore(int score) {
   if (textTexture == nullptr) {
     std::cerr << "Unable to create texture from rendered text! SDL Error: " << SDL_GetError() << std::endl;
   }
-  SDL_Rect textRect = {0, 0, textSurface->w, textSurface->h};
+  SDL_Rect textRect = {static_cast<int>(grid_width * block.h - (textSurface->w)) - 20 , 20, textSurface->w, textSurface->h};
   SDL_RenderCopy(sdl_renderer, textTexture, nullptr, &textRect);
   SDL_RenderPresent(sdl_renderer);
 }

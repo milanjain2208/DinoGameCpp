@@ -3,7 +3,7 @@ void Dinosaur::jump() {
     // init_jumptime = SDL_GetTicks();
     jump_velocity = -1 * 0.12 * grid_height;
     in_air = true;
-    std::cout<<jump_velocity<<" "<<jump_accn<<" "<<std::endl;
+    // std::cout<<jump_velocity<<" "<<jump_accn<<" "<<std::endl;
 }
 void Dinosaur::update() {
     if (init_jump && !in_air) {

@@ -18,11 +18,11 @@ void Game::Run(Controller &controller, Renderer &renderer,
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running,dinosaur);
     Update();
-    renderer.Render(dinosaur,platform1, platform2);
+    renderer.Render(dinosaur,platform1, platform2,score);
     // std::cout<<dinosaur.dest.x<<" "<<dinosaur.dest.y<<" "<<dinosaur.dest.w<<" "<<dinosaur.dest.h<<" "<<std::endl;
     // std::cout<<platform1.tree.dest.x<<" "<<platform1.tree.dest.y<<" "<<platform1.tree.dest.w<<" "<<platform1.tree.dest.h<<" "<<std::endl;
     if (Collision(dinosaur.dest,platform1.tree.dest) || Collision(dinosaur.dest,platform2.tree.dest)) {
-      std::cout << "Terminating" << std::endl;
+      std::cout << "Game Over. Your Score: "<< score << std::endl;
       running = false;
     }
 
